@@ -1,3 +1,5 @@
+from haversine import inverse_haversine, Direction
+from math import pi
 import webbrowser
 import requests
 import json
@@ -5,6 +7,7 @@ import time
 import sys
 import math
 import random
+
 
 
 #GET USER LOCATION
@@ -20,37 +23,16 @@ headers = {
     'Authorization': 'prj_test_sk_b5cdcfa075785c7e9712db8ef351e34bbca32c17',
 }
 
-#PLACE TO FIND CLOSE TO THE LOCATION OF THE USER
-
 #https://www.google.com/maps/dir/?api=1&origin=Space+Needle+Seattle+WA&destination=Pike+Place+Market+Seattle+WA&travelmode=bicycling
+current_location = (latitude, longitude) # (lat, lon)
 
-def randomGeo(latitude, longitude, radius):
-    y0 = latitude
-    x0 = longitude
-    rd = radius / 111300
-
-    u = random.randrange(0.0, 1.0)
-    v = random.randrange(0.0, 1.0)
-
-    w = rd * math.sqrt(u)
-    t = 2 * math.pi * v
-    x = w * math.cos(t)
-    y = w * math.sin(t)
-
-    xp = x / math.cos(y0)
- 
-    new_latitude = y + y0
-    new_longitude = xp + x0
-
-    return(new_latitude, new_longitude)
-
-radius = 50000 #5 miles
+#print(inverse_haversine(paris, 32, pi * random.uniform(0.0,pi)))
 
 link = "https://www.google.com/maps/dir/?api=1&origin=&destination=Pike+Place+Market+Seattle+WA&travelmode=bicycling"
 index = link.find('origin=')
 origin = link[:index] + 'origin=' + str(latitude) + "," + str(longitude) + '&destination='
 index2 = origin.find('destination=')
-newLatitude, newLongitude = randomGeo(latitude, longitude, radius)
+newLatitude, newLongitude = inverse_haversine(current_location, 32, pi * random.uniform(0.0,pi)) # Finding 32 km west from the user's location
 destination = origin + str(newLatitude) + "," + str(newLongitude)
 #print(destination)
 webbrowser.open(destination)
