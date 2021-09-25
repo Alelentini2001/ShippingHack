@@ -12,13 +12,19 @@ var longitude_destination = {{ longitude_destination }};
 
 function myMap() {
 var mapProp= {
-  origin:new google.maps.LatLng(latitude_origin,longitude_origin),
-  destination:new google.maps.LatLng(latitude_destination,longitude_destination),
+  center:new google.maps.LatLng(Number(latitude_origin),Number(longitude_origin)),
+  
   zoom:5,
 };
 var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+new google.maps.Marker({
+    position: {latitude_origin,longitude_origin},
+    map,
+    title: "Hello World!",
+  });
 }
+
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_NDD0aaQUnel0bWeTqxDyGqwwWUazHnY&callback=myMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVT-ySDwoCCra27aGKktlLXA2JRHapywA&callback=myMap"></script>
 {% endblock %}
