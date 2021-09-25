@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify, session
 from markupsafe import escape
 import sqlite3 as sql
-import GetDriverLocation
+#import GetDriverLocation
 
 # app - The flask application where all the magical things are configured.
 app = Flask(__name__)
@@ -17,7 +17,7 @@ def login():
         return render_template('hub.html')
     else :
         msg = "Username or Password are not correct!"
-        return render_template('templates/login.html', msg=msg)
+        return render_template('login.html', msg=msg)
 
 @app.route('/logout')
 def logout():
