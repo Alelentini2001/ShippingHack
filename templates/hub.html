@@ -11,17 +11,18 @@ var latitude_destination = {{ latitude_destination }};
 var longitude_destination = {{ longitude_destination }};
 
 function myMap() {
-var myLatLng= {
-  center:new google.maps.LatLng(47.6097,-122.3422),
+var mapProp= {
+  center:new google.maps.LatLng(latitude_origin,longitude_origin),
   
   zoom:5,
 };
 var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 new google.maps.Marker({
-    position: myLatLng,
+    position: {latitude_origin,longitude_origin},
     map,
     title: "Hello World!",
   });
+}
 
 </script>
 
