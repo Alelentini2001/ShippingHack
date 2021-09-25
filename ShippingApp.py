@@ -45,6 +45,7 @@ def not_found(e):
 #------------------------------------------------------------
 @app.route('/hub')
 def share_location():
+    GetDriverLocation()
     latitude_origin = GetDriverLocation.latitude
     longitude_origin = GetDriverLocation.longitude
     latitude_destination = GetDriverLocation.newLatitude
