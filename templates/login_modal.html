@@ -1,0 +1,52 @@
+{% block content %}
+<!-- Login Modal -->
+<div id="login" class="modal">
+    <div class="modal-content">
+        <h4>Login</h4>
+        <form>
+            <div class="row">
+                <div class="input-field col  s12">
+                    <input placeholder="" id="username" type="text" class="validate">
+                    <label for="username">Username</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input placeholder="" id="password" type="password" class="validate">
+                    <label for="password">Password</label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <p class="red">{{ msg }}</p>
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Login</a>
+    </div>
+</div>
+<!-- End Login Modal -->
+<!-- Start Register Modal -->
+<div id="register" class="modal">
+    <div class="modal-content">
+        <h4>Register</h4>
+        <form>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input placeholder="" id="username" type="text" class="validate">
+                    <label for="username">Username</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input placeholder="" id="password" type="password" class="validate">
+                    <label for="password">Password</label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <p class="red">{{ msg }}</p>
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Register</a>
+    </div>
+</div>
+<!-- End Register modal -->
+{% endblock %}
