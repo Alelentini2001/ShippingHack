@@ -12,7 +12,7 @@ var longitude_destination = {{ longitude_destination }};
 
 function myMap() {
 var mapProp= {
-  center:new google.maps.LatLng(latitude_origin,longitude_origin),
+  center:new google.maps.LatLng(Number(latitude_origin),Number(longitude_origin)),
   
   zoom:5,
 };
