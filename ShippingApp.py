@@ -27,8 +27,7 @@ def login():
 def logout():
     # remove the username from the session if it's there
     session.pop('username', None)
-    user = "Not Logged!"
-    return render_template('index.html', server_url=BUGGY_RACE_SERVER_URL, user=user)
+    return render_template('login.html')
 
 @app.route('/')
 def home():
