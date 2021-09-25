@@ -13,10 +13,16 @@ var longitude_destination = parseFloat({{ longitude_destination }});
 function myMap() {
 var mapProp= {
   center: { lat: latitude_origin, lng: longitude_origin },
-  
   zoom: 15,
 };
 var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+new google.maps.DirectionsRequest({
+	origin: {lat: latitude_origin, lng: longitude_origin},
+	destination: {lat: latitude_destination, lng: longitude_destination},
+	map: map,
+	travelMode: 'DRIVING',
+	unitSystem: google.maps.UnitSystem.IMPERIAL,
+});
 new google.maps.Marker({
     position: {lat: latitude_origin, lng: longitude_origin},
     map: map,
@@ -28,3 +34,5 @@ new google.maps.Marker({
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVT-ySDwoCCra27aGKktlLXA2JRHapywA&callback=myMap"></script>
 {% endblock %}
+
+
