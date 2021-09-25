@@ -17,7 +17,7 @@ def login():
         return render_template('hub.html')
     else :
         msg = "Username or Password are not correct!"
-        return render_template('login.html', msg=msg)
+        return render_template('templates/login.html', msg=msg)
 
 @app.route('/logout')
 def logout():
@@ -43,7 +43,7 @@ def not_found(e):
 @app.route('/share_location')
 def share_location():
     
-    
+
     return render_template("buggy.html", buggies=records)
 
 # You shouldn't need to add anything below this!
