@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<main>
+    <div class="background-image"></div>
+    <div class="main-content col s12 m8 offset-m2 l6 offset-l3">
+        <div class="card-panel black z-depth-1">
+            <div class="row valign-wrapper">
+                <div class="col s10">
+                    <span class="header-title white-text">
+                        ShippingHack
+                    </span>
+                    <br />
+                    <span class="white-text">
+                        Placeholder
+                    </span>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <br />
+            <span class="white-text">Enter your login details below</span>
+            <br />
+            <br />
+            <form method="POST" action="/login">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input placeholder="" name="username" id="username" type="text" class="validate white-text">
+                        <label for="username">Username</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input placeholder="" name="password" id="password" type="password" class="validate white-text">
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                {% if msg %}
+                <div class="card red">
+                    <div class="card-content white-text">{{ msg }}</div>
+                </div>
+                {% endif %}
+                <div class="divider"></div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <button class="btn waves-effect waves-light right" type="submit">Login
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}

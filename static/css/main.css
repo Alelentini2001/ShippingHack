@@ -1,0 +1,41 @@
+@media screen and (min-width: 990px) {
+    .main-content {
+        margin: auto;
+        padding: 10px;
+        width: 75%;
+    }
+    .background-image {
+        background-position: center left;
+    }
+}
+.main-content {
+    margin: auto;
+    padding: 10px;
+}
+.back-colour {
+    background-color: #0d1117e3;
+}
+.header-title {
+    font-size: 2.5em;
+}
+.subheader-title {
+    font-size: 2em;
+}
+.background-image {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url(/img/bg.png);
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    width: 100%;
+    height: 100%;
+    z-index: -999;
+    background-color: #e6e2d9;
+}
+span.character-counter {
+    color: #fff !important;
+}
