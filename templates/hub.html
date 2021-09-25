@@ -3,30 +3,62 @@
 =======
 <h1>Driver Location</h1>
 
-<div id="googleMap" style="width:100%;height:400px;"></div>
+<div id="mapBlocker" style="display: block !important; -webkit-filter: blur(10px) !important; -moz-filter: blur(10px) !important; filter: blur(10px) !important; pointer-events: none;">
+  <div id="googleMap" style="width:100%; height:400px;"></div>
+</div>
 
-<script>
+<a class="waves-effect waves-light btn" onclick="toggleMapVisibility()"><i class="material-icons left">location_on</i>Share Location</a>
+
+<script type="text/javascript">
 var latitude_origin = parseFloat({{ latitude_origin }});
 var longitude_origin = parseFloat({{ longitude_origin }});
 var latitude_destination = parseFloat({{ latitude_destination }});
 var longitude_destination = parseFloat({{ longitude_destination }});
 
-function myMap() {
-var mapProp= {
-  center: { lat: latitude_origin, lng: longitude_origin },
-  zoom: 15,
-};
-var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-new google.maps.DirectionsRequest({
-	origin: {lat: latitude_origin, lng: longitude_origin},
-	destination: {lat: latitude_destination, lng: longitude_destination},
-	map: map,
-	travelMode: 'DRIVING',
-	unitSystem: google.maps.UnitSystem.IMPERIAL,
-});
-new google.maps.Marker({
-    position: {lat: latitude_origin, lng: longitude_origin},
-    map: map,
-    title: "Hello World!",
-  });
+function initMap() {
+  const directionsService = new google.maps.DirectionsService();
+
+  var mapProp= {
+    center: { lat: latitude_origin, lng: longitude_origin },
+    zoom: 15,
+  };
+  var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+  directionsService.route(
+    {  
+      origin: {lat: latitude_origin, lng: longitude_origin},
+      destination: {lat: latitude_destination, lng: longitude_destination},
+      travelMode: 'DRIVING',
+      unitSystem: google.maps.UnitSystem.METRIC
+    },
+    (response, status) => {
+     console.log(response);
+     console.log(status);
+    }
+  );
+
+  new google.maps.Marker({
+      position: {lat: latitude_origin, lng: longitude_origin},
+      map: map,
+      title: "Destination",
+    });
 }
+</script>
+
+<script type="text/javascript">
+  function toggleMapVisibility()
+  {
+    const mapBlocker = document.getElementById("mapBlocker");
+
+    if (mapBlocker.style["filter"] == "") {
+      mapBlocker.style["filter"] = "blur(10px)";
+      mapBlocker.style["pointerEvents"] = "none";
+    }
+    else {
+      mapBlocker.style["filter"] = "";
+      mapBlocker.style["pointerEvents"] = "";
+    }
+  }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVT-ySDwoCCra27aGKktlLXA2JRHapywA&callback=initMap"></script>
+{% endblock %}
