@@ -38,3 +38,5 @@ def getDriverLocation():
 	#print(destination)
 	#webbrowser.open(destination)
 	return latitude, longitude, newLatitude, newLongitude
+
+latitude, longitude, newLatitude, newLongitude = getDriverLocation()
