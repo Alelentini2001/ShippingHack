@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, session
+from flask import Flask, render_template, request, jsonify, session, redirect
 from markupsafe import escape
 import sqlite3 as sql
 import GetDriverLocation
@@ -17,7 +17,7 @@ def login():
         psw = session['password']
         
         if usr == "Username" and psw == "Password":
-            return render_template('hub.html')
+            return redirect("/hub", code=302)
         else :
             msg = "Username or Password are not correct!"
             return render_template('login.html', msg=msg)
