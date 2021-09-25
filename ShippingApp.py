@@ -6,18 +6,21 @@ import sqlite3 as sql
 # app - The flask application where all the magical things are configured.
 app = Flask(__name__)
 
-@app.route('/login')
+@app.route('/login', methods=['POST'])
 def login():
-    session['username'] = request.form['username']
-    session['password'] = request.form['password']
-    usr = session['username']
-    psw = session['password']
+    if request.method == 'POST':
+
+        session['username'] = request.form['username']
+        session['password'] = request.form['password']
+        usr = session['username']
+        psw = session['password']
         
-    if usr == "Username" and psw == "Password":
-        return render_template('hub.html')
-    else :
-        msg = "Username or Password are not correct!"
-        return render_template('login.html', msg=msg)
+        if usr == "Username" and psw == "Password":
+            return render_template('hub.html')
+        else :
+            msg = "Username or Password are not correct!"
+            return render_template('login.html', msg=msg)
+
 
 @app.route('/logout')
 def logout():
