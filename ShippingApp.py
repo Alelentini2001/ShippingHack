@@ -6,6 +6,7 @@ import sqlite3 as sql
 # app - The flask application where all the magical things are configured.
 app = Flask(__name__)
 
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 @app.route('/login', methods=['POST'])
 def login():
     if request.method == 'POST':
