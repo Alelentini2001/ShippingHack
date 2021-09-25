@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify, session
 from markupsafe import escape
 import sqlite3 as sql
-#import GetDriverLocation
+import GetDriverLocation
 
 # app - The flask application where all the magical things are configured.
 app = Flask(__name__)
@@ -43,11 +43,14 @@ def not_found(e):
   return render_template("404.html")
 
 #------------------------------------------------------------
-@app.route('/share_location')
+@app.route('/hub')
 def share_location():
-    
+    latitude_origin = GetDriverLocation.latitude
+    longitude_origin = GetDriverLocation.longitude
+    latitude_destination = GetDriverLocation.newLatitude
+    longitude_destination = GetDriverLocation.newLongitude
 
-    return render_template("buggy.html", buggies=records)
+    return render_template("hub.html", latitude_origin=latitude_origin, longitude_origin=longitude_origin, latitude_destination=latitude_destination, longitude_destination=longitude_destination)
 
 # You shouldn't need to add anything below this!
 if __name__ == '__main__':
