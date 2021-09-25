@@ -1,30 +1,33 @@
 from flask import Flask, render_template, request, jsonify, session
 from markupsafe import escape
 import sqlite3 as sql
-#import GetDriverLocation
+import GetDriverLocation
 
 # app - The flask application where all the magical things are configured.
 app = Flask(__name__)
 
-@app.route('/login')
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+@app.route('/login', methods=['POST'])
 def login():
-    session['username'] = request.form['username']
-    session['password'] = request.form['password']
-    usr = session['username']
-    psw = session['password']
+    if request.method == 'POST':
+
+        session['username'] = request.form['username']
+        session['password'] = request.form['password']
+        usr = session['username']
+        psw = session['password']
         
-    if usr == "Username" and psw == "Password":
-        return render_template('hub.html')
-    else :
-        msg = "Username or Password are not correct!"
-        return render_template('login.html', msg=msg)
+        if usr == "Username" and psw == "Password":
+            return render_template('hub.html')
+        else :
+            msg = "Username or Password are not correct!"
+            return render_template('login.html', msg=msg)
+
 
 @app.route('/logout')
 def logout():
     # remove the username from the session if it's there
     session.pop('username', None)
-    user = "Not Logged!"
-    return render_template('index.html', server_url=BUGGY_RACE_SERVER_URL, user=user)
+    return render_template('login.html')
 
 @app.route('/')
 def home():
@@ -40,11 +43,14 @@ def not_found(e):
   return render_template("404.html")
 
 #------------------------------------------------------------
-@app.route('/share_location')
+@app.route('/hub')
 def share_location():
-    
+    latitude_origin = GetDriverLocation.latitude
+    longitude_origin = GetDriverLocation.longitude
+    latitude_destination = GetDriverLocation.newLatitude
+    longitude_destination = GetDriverLocation.newLongitude
 
-    return render_template("buggy.html", buggies=records)
+    return render_template("hub.html", latitude_origin=latitude_origin, longitude_origin=longitude_origin, latitude_destination=latitude_destination, longitude_destination=longitude_destination)
 
 # You shouldn't need to add anything below this!
 if __name__ == '__main__':
