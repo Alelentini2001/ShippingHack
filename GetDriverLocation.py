@@ -37,4 +37,3 @@ newLatitude, newLongitude = inverse_haversine(current_location, 32, pi * random.
 #destination = origin + str(newLatitude) + "," + str(newLongitude)
 #print(destination)
 #webbrowser.open(destination)
-return latitude, longitude, newLatitude, newLongitude
