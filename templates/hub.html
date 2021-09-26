@@ -12,17 +12,25 @@
 <script type="text/javascript">
 var latitude_origin = parseFloat({{ latitude_origin }});
 var longitude_origin = parseFloat({{ longitude_origin }});
+
 var latitude_destination = parseFloat({{ latitude_destination }});
 var longitude_destination = parseFloat({{ longitude_destination }});
 
 function initMap() {
+  // Init directions services and display
   const directionsService = new google.maps.DirectionsService();
+  const directionsDisplay = new google.maps.DirectionsRenderer();
 
-  var mapProp= {
+  // Setup the initial state of the map
+  var mapProp = {
     center: { lat: latitude_origin, lng: longitude_origin },
     zoom: 15,
   };
+
+  // Initialise the map in the element itself
   var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+  // Query the route between our destination and origin
   directionsService.route(
     {  
       origin: {lat: latitude_origin, lng: longitude_origin},
@@ -31,16 +39,14 @@ function initMap() {
       unitSystem: google.maps.UnitSystem.METRIC
     },
     (response, status) => {
-     console.log(response);
-     console.log(status);
+      if (status == "OK")
+      {
+        // Show the directions on the map, if we succeed.
+        directionsDisplay.setMap(map);
+        directionsDisplay.setDirections(response);
+      }
     }
   );
-
-  new google.maps.Marker({
-      position: {lat: latitude_origin, lng: longitude_origin},
-      map: map,
-      title: "Destination",
-    });
 }
 </script>
 
