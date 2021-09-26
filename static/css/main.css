@@ -8,26 +8,31 @@
         background-position: center left;
     }
 }
+
 .main-content {
     margin: auto;
     padding: 10px;
 }
+
 .back-colour {
     background-color: #0d1117e3;
 }
+
 .header-title {
     font-size: 2.5em;
 }
+
 .subheader-title {
     font-size: 2em;
 }
+
 .background-image {
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background-image: url(/img/bg.png);
+    background-image: url(/static/img/banner.jpg);
     background-size: auto;
     background-repeat: no-repeat;
     background-position: bottom left;
@@ -36,6 +41,37 @@
     z-index: -999;
     background-color: #e6e2d9;
 }
+
 span.character-counter {
     color: #fff !important;
+}
+
+h4.login-modal-title {
+    color: #000 !important;
+}
+
+/* label color */
+.input-field label {
+    color: #FFF !important;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label {
+    color: #ff9800 !important;
+}
+
+/* label underline focus color */
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #ff9800 !important;
+    box-shadow: 0 1px 0 0 #ff9800 !important;
+}
+
+/* label focus color */
+.input-field input[type=password]:focus + label {
+    color: #ff9800 !important;
+}
+
+/* label underline focus color */
+.input-field input[type=password]:focus {
+    border-bottom: 1px solid #ff9800 !important;
+    box-shadow: 0 1px 0 0 #ff9800 !important;
 }

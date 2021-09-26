@@ -1,70 +1,97 @@
 {% extends "base.html" %}
 {% block content %}
-=======
-<h1>Driver Location</h1>
+<nav class="purple lighten-1" role="navigation">
+  <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">ShippingHack</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a class="waves-effect waves-light modal-trigger" href="/logout">Logout</a></li>
+    </ul>
 
-<div id="mapBlocker" style="display: block !important; -webkit-filter: blur(10px) !important; -moz-filter: blur(10px) !important; filter: blur(10px) !important; pointer-events: none;">
-  <div id="googleMap" style="width:100%; height:400px;"></div>
-</div>
+    <ul id="nav-mobile" class="sidenav">
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+    <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+  </div>
+</nav>
+<div class="main-content">
+  <h1>Driver Location</h1>
 
-<a class="waves-effect waves-light btn" onclick="toggleMapVisibility()"><i class="material-icons left">location_on</i>Share Location</a>
+  <div id="mapBlocker" style="display: block !important; -webkit-filter: blur(10px) !important; -moz-filter: blur(10px) !important; filter: blur(10px) !important; pointer-events: none;">
+    <div id="googleMap" style="width:100%; height:400px;"></div>
+  </div>
 
-<script type="text/javascript">
-var latitude_origin = parseFloat({{ latitude_origin }});
-var longitude_origin = parseFloat({{ longitude_origin }});
+  <a class="waves-effect waves-light btn" onclick="toggleMapVisibility()"><i class="material-icons left">location_on</i>Share Location</a>
 
-var latitude_destination = parseFloat({{ latitude_destination }});
-var longitude_destination = parseFloat({{ longitude_destination }});
+  <script type="text/javascript">
+  var latitude_origin = parseFloat({{ latitude_origin }});
+  var longitude_origin = parseFloat({{ longitude_origin }});
 
-function initMap() {
-  // Init directions services and display
-  const directionsService = new google.maps.DirectionsService();
-  const directionsDisplay = new google.maps.DirectionsRenderer();
+  var latitude_destination = parseFloat({{ latitude_destination }});
+  var longitude_destination = parseFloat({{ longitude_destination }});
 
-  // Setup the initial state of the map
-  var mapProp = {
-    center: { lat: latitude_origin, lng: longitude_origin },
-    zoom: 15,
-  };
+  function initMap() {
+    // Init directions services and display
+    const directionsService = new google.maps.DirectionsService();
+    const directionsDisplay = new google.maps.DirectionsRenderer();
 
-  // Initialise the map in the element itself
-  var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+    // Setup the initial state of the map
+    var mapProp = {
+      center: { lat: latitude_origin, lng: longitude_origin },
+      zoom: 15,
+    };
 
-  // Query the route between our destination and origin
-  directionsService.route(
-    {  
-      origin: {lat: latitude_origin, lng: longitude_origin},
-      destination: {lat: latitude_destination, lng: longitude_destination},
-      travelMode: 'DRIVING',
-      unitSystem: google.maps.UnitSystem.METRIC
-    },
-    (response, status) => {
-      if (status == "OK")
-      {
-        // Show the directions on the map, if we succeed.
-        directionsDisplay.setMap(map);
-        directionsDisplay.setDirections(response);
+    // Initialise the map in the element itself
+    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+    // Query the route between our destination and origin
+    directionsService.route(
+      {  
+        origin: {lat: latitude_origin, lng: longitude_origin},
+        destination: {lat: latitude_destination, lng: longitude_destination},
+        travelMode: 'DRIVING',
+        unitSystem: google.maps.UnitSystem.METRIC
+      },
+      (response, status) => {
+        if (status == "OK")
+        {
+          // Show the directions on the map, if we succeed.
+          directionsDisplay.setMap(map);
+          directionsDisplay.setDirections(response);
+        }
+      }
+    );
+  }
+  </script>
+
+  <script type="text/javascript">
+    function toggleMapVisibility()
+    {
+      const mapBlocker = document.getElementById("mapBlocker");
+
+      if (mapBlocker.style["filter"] == "") {
+        mapBlocker.style["filter"] = "blur(10px)";
+        mapBlocker.style["pointerEvents"] = "none";
+      }
+      else {
+        mapBlocker.style["filter"] = "";
+        mapBlocker.style["pointerEvents"] = "";
       }
     }
-  );
-}
-</script>
+  </script>
 
-<script type="text/javascript">
-  function toggleMapVisibility()
-  {
-    const mapBlocker = document.getElementById("mapBlocker");
-
-    if (mapBlocker.style["filter"] == "") {
-      mapBlocker.style["filter"] = "blur(10px)";
-      mapBlocker.style["pointerEvents"] = "none";
-    }
-    else {
-      mapBlocker.style["filter"] = "";
-      mapBlocker.style["pointerEvents"] = "";
-    }
-  }
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVT-ySDwoCCra27aGKktlLXA2JRHapywA&callback=initMap"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVT-ySDwoCCra27aGKktlLXA2JRHapywA&callback=initMap"></script>
+</div>
+<footer class="page-footer purple lighten-1">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Made for Freshers Hack 2021</h5>
+        <p class="grey-text text-lighten-4">Made within two days.</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright purple darken-1">
+    <div class="container">
+    Made by group <a class="orange-text text-lighten-3" href="https://github.com/Alelentini2001/ShippingHack">Very Nice HTML™</a>
+    </div>
+  </div>
 {% endblock %}
