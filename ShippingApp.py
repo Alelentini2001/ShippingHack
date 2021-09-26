@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request, jsonify, session, redirect, make_response
-from markupsafe import escape
 import requests
 import json
-import sqlite3 as sql
 import GetDriverLocation
 
 # app - The flask application where all the magical things are configured.
