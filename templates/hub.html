@@ -13,7 +13,9 @@
   </div>
 </nav>
 <div class="main-content">
+  
   <h1>Driver Location</h1>
+  <p class="subheader-title">Estimated time: {{ estimated_time }}</p>
 
   <div id="mapBlocker" style="display: block !important; -webkit-filter: blur(10px) !important; -moz-filter: blur(10px) !important; filter: blur(10px) !important; pointer-events: none;">
     <div id="googleMap" style="width:100%; height:400px;"></div>
@@ -83,13 +85,13 @@
   <script src="https://smtpjs.com/v3/smtp.js"></script>  
   <script type="text/javascript">
   var message = "Be at the destination ASAP, the driver will be there in ";
-  message += {{ estimated_time }};
+  message += "{{ estimated_time }}";
     function sendEmail() {
       Email.send({
         Host: "smtp.gmail.com",
         Username : "shippinghack@gmail.com",
         Password : "ShippingHack2021",
-        To : 'alelentini@live.com',
+        To : "shippinghack@gmail.com",
         From : "shippinghack@gmail.com",
         Subject : "Your Driver is coming!",
         Body : message,
