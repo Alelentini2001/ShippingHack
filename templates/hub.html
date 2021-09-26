@@ -77,6 +77,26 @@
       }
     }
   </script>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>  
+  <script type="text/javascript">
+    function sendEmail() {
+      Email.send({
+        Host: "smtp.gmail.com",
+        Username : "shippinghack@gmail.com",
+        Password : "ShippingHack2021",
+        To : 'alelentini@live.com',
+        From : "shippinghack@gmail.com",
+        Subject : "Your Driver is coming!",
+        Body : "Be at the destination ASAP",
+      })
+      .then(function(message){
+        alert("mail sent successfully")
+      });
+    }
+  </script>
+  <form method="post">
+    <input type="button" value="Send Email" onclick="sendEmail()"/>
+  </form>
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVT-ySDwoCCra27aGKktlLXA2JRHapywA&callback=initMap"></script>
 </div>
