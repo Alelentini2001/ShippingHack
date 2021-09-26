@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify, session, redirect, make_response
 from markupsafe import escape
 import requests
+import json
 import sqlite3 as sql
 import GetDriverLocation
 
@@ -71,9 +72,11 @@ def share_location():
 
         response = requests.request("GET", url, headers=headers, data=payload)
 
-        print(response.text)
+        data_json = json.loads(response.text)
 
-        return render_template("hub.html", latitude_origin=latitude_origin, longitude_origin=longitude_origin, latitude_destination=latitude_destination, longitude_destination=longitude_destination)
+        estimated_time = data_json["rows"][0]["elements"][0]["duration"]["text"]
+
+        return render_template("hub.html", latitude_origin=latitude_origin, longitude_origin=longitude_origin, latitude_destination=latitude_destination, longitude_destination=longitude_destination, estimated_time=estimated_time)
     else:
         session["msg"] = "You need to be logged in to do that."
         return redirect("/login", code=302)
@@ -81,3 +84,6 @@ def share_location():
 # You shouldn't need to add anything below this!
 if __name__ == '__main__':
     app.run(debug = True, host="0.0.0.0")
+
+
+
