@@ -82,6 +82,8 @@
   </script>
   <script src="https://smtpjs.com/v3/smtp.js"></script>  
   <script type="text/javascript">
+  var message = "Be at the destination ASAP, the driver will be there in ";
+  message += {{ estimated_time }};
     function sendEmail() {
       Email.send({
         Host: "smtp.gmail.com",
@@ -90,7 +92,7 @@
         To : 'alelentini@live.com',
         From : "shippinghack@gmail.com",
         Subject : "Your Driver is coming!",
-        Body : "Be at the destination ASAP",
+        Body : message,
       })
       .then(function(message){
         alert("mail sent successfully")
