@@ -60,6 +60,22 @@
       }
     );
   }
+  var axios = require('axios');
+  
+  var config = {
+    method: 'get',
+    url: 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + latitude_origin + ',' + longitude_origin + '&destinations=' + latitude_destination + ',' + longitude_destination + '&key=AIzaSyAVT-ySDwoCCra27aGKktlLXA2JRHapywA',
+    headers: { }
+  };
+
+  axios(config)
+  .then(function (response) {
+    console.log(JSON.stringify(response.data));
+  });
+  .catch(function (error) {
+    console.log(error);
+  });
+  
   </script>
 
   <script type="text/javascript">
