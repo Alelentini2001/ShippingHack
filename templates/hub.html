@@ -60,19 +60,6 @@
       }
     );
   }
-
-  var xmlhttp = new XMLHttpRequest();
-  var url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + latitude_origin + ',' + longitude_origin + '&destinations=' + latitude_destination + ',' + longitude_destination + '&key=AIzaSyAVT-ySDwoCCra27aGKktlLXA2JRHapywA';
-
-  xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-      var data = JSON.parse(this.responseText);
-        console.log(data)
-      }
-  };
-
-  xmlhttp.open("GET", url, true);
-  xmlhttp.send(); 
   
   </script>
 

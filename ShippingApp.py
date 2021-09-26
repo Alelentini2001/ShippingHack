@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify, session, redirect, make_response
 from markupsafe import escape
+import requests
 import sqlite3 as sql
 import GetDriverLocation
 
@@ -61,11 +62,18 @@ def share_location():
         longitude_origin = GetDriverLocation.longitude
         latitude_destination = GetDriverLocation.newLatitude
         longitude_destination = GetDriverLocation.newLongitude
+        
 
-        r = make_response(render_template("hub.html", latitude_origin=latitude_origin, longitude_origin=longitude_origin, latitude_destination=latitude_destination, longitude_destination=longitude_destination))
-        r.headers.set("Access-Control-Allow-Origin", "https://maps.googleapis.com/*")
+        url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + str(latitude_origin) + ',' + str(longitude_origin) + '&destinations=' + str(latitude_destination) + ',' + str(longitude_destination) + '&key=AIzaSyAVT-ySDwoCCra27aGKktlLXA2JRHapywA';
 
-        return r
+        payload={}
+        headers = {}
+
+        response = requests.request("GET", url, headers=headers, data=payload)
+
+        print(response.text)
+
+        return render_template("hub.html", latitude_origin=latitude_origin, longitude_origin=longitude_origin, latitude_destination=latitude_destination, longitude_destination=longitude_destination)
     else:
         session["msg"] = "You need to be logged in to do that."
         return redirect("/login", code=302)
