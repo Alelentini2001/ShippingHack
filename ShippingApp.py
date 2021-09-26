@@ -74,7 +74,7 @@ def share_location():
 
         data_json = json.loads(response.text)
 
-        estimated_time = data_json["rows"][0]["elements"][0]["duration"]["text"]
+        estimated_time = str(data_json["rows"][0]["elements"][0]["duration"]["text"])
 
         return render_template("hub.html", latitude_origin=latitude_origin, longitude_origin=longitude_origin, latitude_destination=latitude_destination, longitude_destination=longitude_destination, estimated_time=estimated_time)
     else:

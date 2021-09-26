@@ -82,8 +82,7 @@
   </script>
   <script src="https://smtpjs.com/v3/smtp.js"></script>  
   <script type="text/javascript">
-  var message = "Be at the destination ASAP, the driver will be there in ";
-  message += {{ estimated_time }};
+  var message = "Be at the destination ASAP, the driver will be there in {{ estimated_time }}";
     function sendEmail() {
       Email.send({
         Host: "smtp.gmail.com",
