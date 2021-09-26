@@ -63,7 +63,6 @@ def share_location():
         longitude_destination = GetDriverLocation.newLongitude
 
         r = make_response(render_template("hub.html", latitude_origin=latitude_origin, longitude_origin=longitude_origin, latitude_destination=latitude_destination, longitude_destination=longitude_destination))
-        r.headers.set("Access-Control-Allow-Origin", "https://maps.googleapis.com/*")
 
         return r
     else:
