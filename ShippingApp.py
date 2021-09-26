@@ -75,8 +75,9 @@ def share_location():
         data_json = json.loads(response.text)
 
         estimated_time = str(data_json["rows"][0]["elements"][0]["duration"]["text"])
+        destination_address = str(data_json["destination_addresses"][0])
 
-        return render_template("hub.html", latitude_origin=latitude_origin, longitude_origin=longitude_origin, latitude_destination=latitude_destination, longitude_destination=longitude_destination, estimated_time=estimated_time)
+        return render_template("hub.html", latitude_origin=latitude_origin, longitude_origin=longitude_origin, latitude_destination=latitude_destination, longitude_destination=longitude_destination, estimated_time=estimated_time, destination_address=destination_address)
     else:
         session["msg"] = "You need to be logged in to do that."
         return redirect("/login", code=302)
