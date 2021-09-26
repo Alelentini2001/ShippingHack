@@ -27,7 +27,7 @@ def login():
 def logout():
     # remove the username from the session if it's there
     session.pop('username', None)
-    return render_template('login.html')
+    return redirect("/", code=302)
 
 @app.route('/')
 def home():
